@@ -1,115 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="">
-    <style>
-        body{
-            background-color: #FBF9F7;
-        }
-        .nav-link{
-            color: #3D4B64;
-        }
-    </style>
+    <title>Admin Dashboard - NOCTICS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="admin-body">
+
     <div class="container-fluid">
-        <div class="row vh-100">
-            <!-- Sidebar (Kolom 1) -->
-            <div class="col-md-3 bg-light d-flex flex-column justify-content-between p-4">
+        <div class="row min-vh-100">
+            
+            <div class="col-md-3 col-lg-2 sidebar p-4 d-flex flex-column justify-content-between shadow-sm">
                 <div>
-                    <h2 class="mb-4">YOUR ACTIVITIES</h2>
-                    <ul class="nav flex-column">
+                    <a href="#" class="d-flex align-items-center mb-5 text-decoration-none text-success">
+                        <i class="bi bi-basket2-fill fs-3 me-2"></i>
+                        <span class="fs-4 fw-bold">NOCTICS</span>
+                    </a>
+                    
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-2 text-muted text-uppercase">
+                        <span>Menu Utama</span>
+                    </h6>
+                    
+                    <ul class="nav flex-column gap-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="bookshelves-link">Inventory</a>
+                            <a class="nav-link active-link" href="#" id="bookshelves-link">
+                                <i class="bi bi-box-seam me-2"></i> Inventory (Barang)
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="users-list-link">Users List</a>
+                            <a class="nav-link" href="#" id="users-list-link">
+                                <i class="bi bi-people me-2"></i> Daftar Karyawan
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" id="addData-link">Add Data</a>
+                            <a class="nav-link" href="#" id="addData-link">
+                                <i class="bi bi-plus-circle me-2"></i> Tambah Data
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div>
-                    <a href="../index.html" class="nav-link text-dark">Logout</a>
+
+                <div class="border-top pt-3">
+                    <a href="../index.html" class="nav-link text-danger fw-bold">
+                        <i class="bi bi-box-arrow-left me-2"></i> Logout
+                    </a>
                 </div>
             </div>
 
-            <!-- Main Content Area (Kolom 2, 3, 4) -->
-            <div class="col-md-9">
-                <!-- User List Table (Baris 1, Kolom 2 dan 3 digabung) -->
-                <div class="row h-50">
-                    <div class="col-md-12 p-4" id="dynamic-content">
-                        <!-- Konten dinamis (User List) -->
+            <div class="col-md-9 col-lg-10 ms-sm-auto px-md-4 py-4 bg-light">
+                
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+                    <h1 class="h2 fw-bold text-dark">Dashboard Admin</h1>
+                    
+                    <div class="input-group w-50">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="Cari nama karyawan atau barang..." aria-label="Search">
                     </div>
-                    <div class="col-md-12 p-4">
-                    </div>
-                </div>
-
-                <!-- Employee Details Section -->
-                <div id="user-details" style="margin-top: 20px; display: none;">
-                    <h4>Detail Karyawan</h4>
-                    <div class="col-md-8 p-4">
-                        <p><strong>Nama Karyawan:</strong> <input type="text" id="user-name-input" class="form-control" /></p>
-                        <p><strong>Username:</strong> <input type="text" id="user-username-input" class="form-control" /></p>
-                        <p><strong>No. Telp:</strong> <input type="text" id="user-telp-input" class="form-control" /></p>
-                        <p><strong>Alamat:</strong> <input type="text" id="user-address-input" class="form-control" /></p>
-                    </div>
-                    <div class="col-md-4 p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <button class="btn btn-dark" id="save-user-button">Save</button>
-                            <button class="btn btn-outline-secondary" id="undo-user-button">Undo</button>
-                            <button type="button" class="btn btn-danger btn-sm delete-user" id="delete-user-button" data-id="{{user_id}}">Delete</button>
+                    <div class="btn-toolbar mb-2 mb-md-0 ms-3">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Book Details Section -->
-                <div class="row h-50" id="book-details" style="display: none;">
-                    <h4>Detail Barang</h4>
-                    <div class="col-md-8 p-4">
-                        <p><strong>Nama:</strong> <input type="text" id="book-title-input" class="form-control" /></p>
-                        <p><strong>Stok:</strong> <input type="number" id="book-stock-input" class="form-control" /></p>
+                <div id="dynamic-content" class="bg-white rounded-3 shadow-sm p-4 mb-4" style="min-height: 200px;">
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-grid fs-1"></i>
+                        <p class="mt-2">Pilih menu di sebelah kiri untuk menampilkan data.</p>
                     </div>
-                    <div class="col-md-4 p-4">
-                        <div class="d-flex justify-content-between mb-3">
-                            <button class="btn btn-dark" id="save-book-button">Save</button>
-                            <button class="btn btn-outline-secondary" id="undo-book-button">Undo</button>
-                            <button type="button" class="btn btn-danger btn-sm delete-book" id="delete-book-button" data-id="{{book_id}}">Delete</button>
+                </div>
+
+                <div id="user-details" class="card shadow-sm border-0 mb-4" style="display: none;">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Edit Data Karyawan</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Nama Karyawan</label>
+                                <input type="text" id="user-name-input" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Username</label>
+                                <input type="text" id="user-username-input" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">No. Telepon</label>
+                                <input type="text" id="user-telp-input" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Alamat</label>
+                                <input type="text" id="user-address-input" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-end gap-2">
+                            <button class="btn btn-secondary" id="undo-user-button">Batal</button>
+                            <button type="button" class="btn btn-danger delete-user" id="delete-user-button" data-id="">Hapus</button>
+                            <button class="btn btn-success" id="save-user-button">Simpan Perubahan</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Add Employee Form -->
-                <div id="addUserForm" style="display:none;">
-                    <h3>Add Employee</h3>
-                    <input type="text" id="new-username" placeholder="Username" required>
-                    <input type="password" id="new-password" placeholder="Password" required> <!-- Password input -->
-                    <input type="text" id="new-nama" placeholder="Name" required>
-                    <input type="text" id="new-telp" placeholder="Phone Number" required>
-                    <input type="text" id="new-alamat" placeholder="Address" required>
-                    <button id="submit-user-button">Add Employee</button>
+                <div id="book-details" class="card shadow-sm border-0 mb-4" style="display: none;">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Edit Data Barang</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label class="form-label fw-bold">Nama Barang</label>
+                                <input type="text" id="book-title-input" class="form-control" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Stok</label>
+                                <input type="number" id="book-stock-input" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-end gap-2">
+                            <button class="btn btn-secondary" id="undo-book-button">Batal</button>
+                            <button type="button" class="btn btn-danger delete-book" id="delete-book-button" data-id="">Hapus</button>
+                            <button class="btn btn-success" id="save-book-button">Simpan Perubahan</button>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Add Book Form -->
-                <div id="addBookForm" style="display:none;">
-                    <h3>Add Barang</h3>
-                    <input type="text" id="new-book-title" placeholder="Book Title" required>
-                    <input type="number" id="new-book-stock" placeholder="Stock" required>
-                    <button id="submit-book-button">Add Barang</button>
+                <div id="addUserForm" class="card shadow-sm border-0 mb-4" style="display:none;">
+                    <div class="card-header bg-white border-bottom">
+                        <h4 class="text-success fw-bold mb-0">Tambah Karyawan Baru</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" id="new-username" placeholder="Buat username unik" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" id="new-password" placeholder="Min. 6 karakter" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="new-nama" placeholder="Nama sesuai KTP" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">No. Telepon</label>
+                                <input type="text" class="form-control" id="new-telp" placeholder="08xx..." required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" class="form-control" id="new-alamat" placeholder="Alamat domisili" required>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button id="submit-user-button" class="btn btn-success w-100 py-2">Tambah Karyawan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="addBookForm" class="card shadow-sm border-0 mb-4" style="display:none;">
+                    <div class="card-header bg-white border-bottom">
+                        <h4 class="text-success fw-bold mb-0">Tambah Stok Barang</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label class="form-label">Nama Barang</label>
+                                <input type="text" class="form-control" id="new-book-title" placeholder="Contoh: Beras Premium 5kg" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Jumlah Stok</label>
+                                <input type="number" class="form-control" id="new-book-stock" placeholder="0" required>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button id="submit-book-button" class="btn btn-success w-100 py-2">Tambah Barang</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/script.js"></script>
+    
+    <script>
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                // Jangan ubah style tombol Logout
+                if(this.innerText.includes('Logout')) return; 
+                
+                links.forEach(l => l.classList.remove('active-link', 'bg-success', 'text-white'));
+                this.classList.add('active-link', 'bg-success', 'text-white');
+                this.classList.remove('text-dark');
+            });
+        });
+
+        // Fitur Pencarian Dinamis (Admin)
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            // Mencari tabel aktif di dalam dynamic-content
+            let table = document.querySelector('#dynamic-content table');
+            
+            if (table) {
+                let tr = table.getElementsByTagName('tr');
+
+                // Loop semua baris tabel (mulai dari 1 untuk melewati Header)
+                for (let i = 1; i < tr.length; i++) {
+                    let tdName = tr[i].getElementsByTagName('td')[1]; // Asumsi kolom Nama ada di index 1 (setelah No)
+                    let tdUser = tr[i].getElementsByTagName('td')[2]; // Cek kolom username/lainnya juga jika perlu
+                    
+                    if (tdName || tdUser) {
+                        let textValueName = tdName.textContent || tdName.innerText;
+                        let textValueUser = tdUser ? (tdUser.textContent || tdUser.innerText) : "";
+                        
+                        // Cek apakah Nama ATAU Username cocok dengan pencarian
+                        if (textValueName.toLowerCase().indexOf(filter) > -1 || textValueUser.toLowerCase().indexOf(filter) > -1) {
+                            tr[i].style.display = ""; // Tampilkan
+                        } else {
+                            tr[i].style.display = "none"; // Sembunyikan
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,78 +1,421 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary-color: #198754; /* Hijau Segar */
+    --primary-hover: #146c43; /* Hijau lebih gelap untuk hover */
+    --secondary-color: #e8f5e9; /* Hijau sangat muda untuk background */
+    --text-dark: #2c3e50;
+    --text-muted: #6c757d;
+    --white: #ffffff;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #FBF9F7; /* Mengubah latar belakang menjadi #FBF9F7 */
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    background-color: #fcfcfc;
+    overflow-x: hidden; /* Mencegah scroll horizontal tidak sengaja */
 }
-.navbar {
-    background-color: white;
-    align-items: center;
-}
-.navbar-brand {
-    font-weight: bold;
-}
-.login-btn {
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-    padding: 8px 20px;
-}
-.home-section {
-    padding: 40px 0;
-}
-.about-section {
-    padding: 60px 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-.about-section .col {
-    background-color: white; /* Set background color putih untuk masing-masing kolom */
-    border: 1px solid #ddd;
-    padding: 20px;
-    text-align: center;
-}
-.about-section .ranking {
-    grid-column: span 2;
-}
-.about-section .recommended {
-    grid-row: span 2;
-}
-footer {
-    padding: 40px 0;
-    background-color: #F7F7F7;
-}
-.footer-bottom {
-    margin-top: 20px;
-    text-align: center;
-}
-a{
+
+a {
     text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   2. NAVBAR STYLING
+   ========================================= */
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05); /* Bayangan halus */
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    color: var(--primary-color) !important;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #555 !important;
+    margin: 0 10px;
+    font-size: 0.95rem;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* Tombol Login berbentuk Pill (Kapsul) */
+.btn-login {
+    background-color: var(--primary-color);
+    color: var(--white) !important;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+}
+
+.btn-login:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    color: var(--white) !important;
+}
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero-section {
+    padding: 100px 0 80px;
+    background: linear-gradient(to right, #fff 40%, var(--secondary-color) 100%);
+    position: relative;
+}
+
+.hero-title {
+    font-weight: 800;
+    font-size: 3.5rem; /* Ukuran font besar untuk judul */
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+/* Tombol Call to Action (CTA) */
+.btn-cta {
+    padding: 12px 35px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   4. FEATURES / LAYANAN SECTION
+   ========================================= */
+.features-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 40px 25px;
+    border-radius: 20px;
+    background: var(--white);
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 30px rgba(25, 135, 84, 0.1);
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+/* =========================================
+   5. PRODUCTS SECTION
+   ========================================= */
+.section-title {
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 60px;
+    position: relative;
+    color: var(--text-dark);
+}
+
+/* Garis hijau kecil di bawah judul section */
+.section-title::after {
+    content: '';
+    width: 80px;
+    height: 5px;
+    background: var(--primary-color);
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50px;
+}
+
+.product-card {
+    border: none;
+    border-radius: 15px;
+    background: var(--white);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%; /* Agar tinggi kartu sama rata */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.product-img-wrapper {
+    height: 220px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img-wrapper img {
+    transform: scale(1.1); /* Efek zoom saat hover */
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+footer {
+    background-color: #212529;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 70px 0 30px;
+    margin-top: 100px;
+}
+
+footer h4, footer h5 {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.footer-social {
+    margin-top: 20px;
+}
+
+.footer-social i {
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.7);
+    margin-right: 20px;
+    transition: all 0.3s;
+}
+
+.footer-social i:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* =========================================
+   7. UTILITIES & RESPONSIVE
+   ========================================= */
+.text-green { color: var(--primary-color); }
+
+/* Responsif untuk Layar Tablet & HP */
+@media (max-width: 991px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section {
+        text-align: center;
+        padding-top: 50px;
+        background: linear-gradient(to bottom, #fff, var(--secondary-color));
+    }
+    
+    .hero-text {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 80%;
+    }
+
+    .btn-login {
+        display: inline-block;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .feature-card {
+        padding: 20px;
+    }
+}
+
+/* =========================================
+   8. LOGIN PAGE STYLING
+   ========================================= */
+
+/* Agar halaman login penuh satu layar (tidak ada scroll) */
+.login-body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Gambar Samping Kiri */
+.login-image-side {
+    /* Menggunakan gambar ilustrasi groceries */
+    background: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+/* Overlay Hijau Transparan di atas gambar */
+.login-image-side::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(25, 135, 84, 0.3), rgba(25, 135, 84, 0.7));
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
     color: white;
+    z-index: 2;
+    padding-right: 40px;
 }
 
-.carousel-item{
-    max-width: 100%;
-    padding-left: 10px;
+.overlay-text h2 {
+    font-weight: 800;
+    font-size: 2.5rem;
 }
 
-.sticky-navbar {
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Pastikan navbar tetap di atas konten lain */
-    background-color: white; /* Tambahkan warna latar agar jelas saat sticky */
+/* Wrapper Form Login */
+.login-box-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
 }
+
+/* Styling Input agar lebih modern (Floating Label Bootstrap sudah bagus, kita pertajam) */
+.form-floating .form-control {
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+    background-color: #fcfcfc;
+}
+
+.form-floating .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.15);
+}
+
+/* Link Kembali ke Home */
+.back-home {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.back-home:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 1.5rem;
+    .login-body {
+        height: auto;
+        overflow-y: auto; /* Aktifkan scroll di HP jika konten panjang */
     }
-    .login-btn {
-        display: block;
-        margin: 10px auto;
+    
+    .login-box-wrapper {
+        padding: 40px 20px;
+        margin-top: 20px;
     }
-    .about-section h2 {
-        font-size: 1.5rem;
-    }
-    .home-section p {
-        font-size: 0.9rem;
-    }
+}
+
+/* =========================================
+   9. ADMIN PAGE STYLING
+   ========================================= */
+
+.admin-body {
+    background-color: #f8f9fa; /* Latar belakang abu-abu terang */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #ffffff;
+    min-height: 100vh;
+    z-index: 100;
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #6c757d; /* Warna teks default */
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #e9ecef;
+    color: var(--primary-color);
+}
+
+/* State Aktif untuk Menu */
+.sidebar .nav-link.active-link {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+}
+
+.sidebar .nav-link.active-link i {
+    color: white !important;
+}
+
+.sidebar-heading {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+/* Form & Card Styling di Admin */
+.card {
+    border-radius: 12px;
+}
+
+.card-header {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    padding: 15px 20px;
+}
+
+/* Table Styling (Jika script.js Anda generate table) */
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border: none;
+}
+
+.table td {
+    vertical-align: middle;
 }
