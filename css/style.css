@@ -1,0 +1,78 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FBF9F7; /* Mengubah latar belakang menjadi #FBF9F7 */
+}
+.navbar {
+    background-color: white;
+    align-items: center;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.login-btn {
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+.home-section {
+    padding: 40px 0;
+}
+.about-section {
+    padding: 60px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.about-section .col {
+    background-color: white; /* Set background color putih untuk masing-masing kolom */
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+}
+.about-section .ranking {
+    grid-column: span 2;
+}
+.about-section .recommended {
+    grid-row: span 2;
+}
+footer {
+    padding: 40px 0;
+    background-color: #F7F7F7;
+}
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.carousel-item{
+    max-width: 100%;
+    padding-left: 10px;
+}
+
+.sticky-navbar {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Pastikan navbar tetap di atas konten lain */
+    background-color: white; /* Tambahkan warna latar agar jelas saat sticky */
+}
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    .login-btn {
+        display: block;
+        margin: 10px auto;
+    }
+    .about-section h2 {
+        font-size: 1.5rem;
+    }
+    .home-section p {
+        font-size: 0.9rem;
+    }
+}
